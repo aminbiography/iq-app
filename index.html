@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- The meta charset defines the character encoding for the document -->
+    <meta charset="UTF-8">
+    
+    <!-- This meta tag ensures the webpage is responsive and scales well on different devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Link to external CSS file for styling the webpage -->
+    <link rel="stylesheet" href="assets/style.css">
+    
+    <!-- Title of the webpage, appears on the browser tab -->
+    <title>IQ App</title>
+</head>
+<body>
+    
+    <!-- Main section for the quiz content -->
+    <section class="quiz">
+        
+        <!-- Container for the quiz question and answer list -->
+        <div class="question__container">
+            
+            <!-- Element to display the quiz question -->
+            <h2 class="quiz__question">
+                <!-- Question text will be inserted dynamically by JavaScript -->
+            </h2>
+    
+            <!-- Unordered list to hold the possible answers -->
+            <ul class="quiz__ans-list">
+                
+                <!-- First answer option -->
+                <li class="ans-list-item">
+                    <!-- Radio button for selecting the answer -->
+                    <input class="answer" type="radio" name="ans" id="a">
+                    
+                    <!-- Custom radio button appearance -->
+                    <span class="custom-radio"></span>
+                    
+                    <!-- Label to display the text for the answer (populated dynamically) -->
+                    <label for="a" class="quiz__ans__label a_text"></label>
+                </li>
+                
+                <!-- Second answer option -->
+                <li class="ans-list-item">
+                    <input class="answer" type="radio" name="ans" id="b">
+                    <span class="custom-radio"></span>
+                    <label for="b" class="quiz__ans__label b_text"></label>
+                </li>
+                
+                <!-- Third answer option -->
+                <li for="c" class="ans-list-item">
+                    <input class="answer" type="radio" name="ans" id="c">
+                    <span class="custom-radio"></span>                    
+                    <label for="c" class="quiz__ans__label c_text"></label>
+                </li>
+                
+                <!-- Fourth answer option -->
+                <li class="ans-list-item">
+                    <input class="answer" type="radio" name="ans" id="d">
+                    <span class="custom-radio"></span>
+                    <label for="d" class="quiz__ans__label d_text"></label>
+                </li>
+                            
+            </ul>
+        </div>
+
+        <!-- Submit button for submitting the answer -->
+        <button class="quiz__submit">Submit</button>
+    </section>
+    
+    <!-- Link to external JavaScript file for quiz functionality -->
+    <script src="assets/script.js"></script>
+</body>
+</html>

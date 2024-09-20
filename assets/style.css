@@ -1,0 +1,220 @@
+/* Importing the "Poppins" font from Google Fonts with weights 300, 400, and 600 */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Universal selector: Applies to all elements */
+*{
+    /* Sets box-sizing to border-box, ensuring padding and borders are included in the element’s width/height */
+    box-sizing: border-box;
+    /* Removes default margin and padding from all elements */
+    margin: 0;
+    padding: 0;
+}
+
+/* Removes bullet points from all unordered lists */
+ul{
+    list-style-type: none;
+}
+
+/* Sets base font-size to 62.5% of the default size (usually 16px), making 1rem = 10px for easier calculations */
+html{
+    font-size: 62.5%;
+}
+
+/* Body styling */
+body{
+    /* Flexbox centering */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Adds padding around the body */
+    padding: 5%;
+    /* Applies the Poppins font across the body */
+    font-family: "Poppins", sans-serif;
+    /* Sets a minimum height of 100vh (full viewport height) */
+    min-height: 100vh;
+    /* Background with a diagonal gradient color */
+    background: linear-gradient(315deg, #dbcab6 0%, #f7f7fa 74%) no-repeat;
+}
+
+/* Quiz container styling */
+.quiz{
+    /* White background color for the quiz */
+    background-color: #fff;
+    /* Box shadow for a subtle 3D effect */
+    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 1);
+    /* Rounded corners with a 1rem radius */
+    border-radius: 1rem;
+    /* Ensures no hidden elements overflow */
+    overflow: hidden;
+    /* Minimum and maximum width for responsive design */
+    min-width: 60rem;
+    max-width: 90rem;
+}
+
+/* Question container padding */
+.question__container{
+    padding: 4rem 3rem;
+}
+
+/* Styling for the quiz question */
+.quiz__question{
+    /* Larger font size for the question */
+    font-size: 2.2rem;
+    /* Normal font weight */
+    font-weight: 400;
+    /* Margin at the bottom to separate the question from answers */
+    margin-bottom: 2rem;
+    /* Center alignment for the text */
+    text-align: center;
+    /* Line height for better readability */
+    line-height: 1.3;
+    /* Dark gray color for the question */
+    color: #444;
+}
+
+/* Styling for the quiz score display */
+.quiz__question--score{
+    /* Slightly smaller font size for the score */
+    font-size: 1.8rem;
+    /* Padding inside the score display */
+    padding: 2rem;
+    /* No margin at the bottom */
+    margin-bottom: 0;
+}
+
+/* Styling for answer list items */
+.ans-list-item{
+    /* Flexbox for horizontal alignment of answers */
+    display: flex;
+    align-items: center;
+    /* Top border between list items */
+    border-top: 1px solid #f1dbc1;
+}
+
+/* Add bottom border to the last answer */
+.ans-list-item:last-of-type{
+    border-bottom: 1px solid #f1dbc1;
+}
+
+/* Styling for the answer labels */
+.quiz__ans__label{
+    /* Font size and weight for answer options */
+    font-size: 1.6rem;
+    font-weight: 300;
+    /* Padding around the text */
+    padding: 1rem;
+    /* Answer labels will take up the full width */
+    width: 100%;
+    /* Cursor will change to pointer when hovering */
+    cursor: pointer;
+    /* Additional padding on the left for spacing */
+    padding-left: 4rem;
+    /* Light gray color for the text */
+    color: #666;
+}
+
+/* Active class for answer labels when selected */
+.quiz__ans__label.active{
+    /* Bold font weight when active */
+    font-weight: 600;
+}
+
+/* Custom radio button styling */
+.custom-radio{
+    /* Displays radio buttons as blocks */
+    display: block;
+    /* Fixed width and height for the custom radio buttons */
+    width: 18px;
+    height: 18px;
+    /* Positions the radio button */
+    position: absolute;
+    /* Makes the radio button circular */
+    border-radius: 50%;
+    /* Margin on the left for spacing */
+    margin-left: 1rem;
+    /* Light gray border around the button */
+    border: 1px solid #ddd;
+}
+
+/* Custom radio button checked state */
+.custom-radio::after{
+    /* Empty content initially */
+    content: '';
+    /* Initially hidden */
+    opacity: 0;
+    /* Positioned absolutely inside the radio button */
+    position: absolute;
+    /* Takes up 60% of the parent size */
+    width: 60%;
+    height: 60%;
+    /* Centers the content */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Makes the after content circular */
+    border-radius: 50%;
+    /* Smooth transition when toggled */
+    transition: opacity .2s ease-in;
+    /* Purple color for the selected dot */
+    background-color: #be29ec;
+}
+
+/* Changes opacity to 1 (visible) when the radio button is checked */
+input[type="radio"]:checked ~ .custom-radio::after{
+    opacity: 1;
+}
+
+/* Styling for the checked radio button label */
+input[type="radio"]:checked ~ .quiz__ans__label{
+    /* Darker color for selected answer */
+    color: #444;
+    /* Bold font for selected label */
+    font-weight: 500;
+    /* Light background color for the selected answer */
+    background-color: #ca8f4c1a;
+}
+
+/* Hides the default radio buttons */
+input[type="radio"]{
+    display: none;
+}
+
+/* Submit button styling */
+.quiz__submit{
+    /* Inherits font-family */
+    font-family: inherit;
+    /* White text color */
+    color: #fff;
+    /* Block-level element */
+    display: block;
+    /* Padding inside the button */
+    padding: 1.5rem 0;
+    /* Larger font size for submit button */
+    font-size: 1.8rem;
+    /* Normal font weight */
+    font-weight: 400;
+    /* No border */
+    border: none;
+    /* Full width for the submit button */
+    width: 100%;
+    /* Default purple background color */
+    background-color: #be29ec;
+}
+
+/* Changes background color on hover for the submit button */
+.quiz__submit:hover{
+    background-color: #E03FD8;
+}
+
+/* Active state background color for submit button */
+.quiz__submit:active{
+    background-color: #00ff00;
+}
+
+/* Media query for small screens (mobile) */
+@media only screen and (max-width: 450px){
+    /* Full width for the quiz container on small screens */
+    .quiz{
+        min-width: 100%;
+    }
+}
