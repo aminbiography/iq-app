@@ -97,6 +97,7 @@ let answer = undefined;
 let score = 0;
 let timer; // Timer variable
 const totalQuizTime = 180; // Total time for the quiz in seconds (e.g., 5 minutes)
+let startTime; // To track when the quiz starts
 
 showQuiz();
 startTimer(); // Start the total quiz timer on load
@@ -113,6 +114,7 @@ function showQuiz() {
 }
 
 function startTimer() {
+    startTime = Date.now(); // Capture the start time
     let timeLeft = totalQuizTime;
     timerEl.innerText = timeLeft;
 
@@ -167,9 +169,13 @@ submitBtn.addEventListener('click', function () {
 
 function showScore() {
     clearInterval(timer); // Stop the timer when showing score
+    const endTime = Date.now(); // Capture the end time
+    const totalTimeTaken = Math.floor((endTime - startTime) / 1000); // Calculate time taken in seconds
+
     quizContainer.innerHTML = `
         <h2 class="quiz__question quiz__question--score">
-        Congratulations! You've completed the quiz. Your Score is ${score}/${questions.length}
+        Congratulations! You've completed the quiz. Your Score is ${score}/${questions.length}<br>
+        Total Time Taken: ${totalTimeTaken} seconds
         </h2>
         <button onclick="location.reload()" class="quiz__submit">Start Again</button>
     `;
