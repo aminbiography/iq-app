@@ -35,7 +35,13 @@ body{
     /* Background with a diagonal gradient color */
     background: linear-gradient(315deg, #dbcab6 0%, #f7f7fa 74%) no-repeat;
 }
-
+/* Quiz timer styling */
+.timer {
+    font-size: 1.6rem;
+    color: #444;
+    text-align: center;
+    margin-bottom: 1rem;
+}
 /* Quiz container styling */
 .quiz{
     /* White background color for the quiz */

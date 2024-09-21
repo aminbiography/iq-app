@@ -82,30 +82,29 @@ const questions = [
     }
 ];
 
-// Selecting elements from the DOM
-const quizContainer = document.querySelector('.quiz'); // The main quiz container
-const answersEls = document.querySelectorAll('.answer'); // All answer radio buttons
-const questionEl = document.querySelector('.quiz__question'); // The element for displaying the question
-const a_text = document.querySelector('.a_text'); // The label for option 'a'
-const b_text = document.querySelector('.b_text'); // The label for option 'b'
-const c_text = document.querySelector('.c_text'); // The label for option 'c'
-const d_text = document.querySelector('.d_text'); // The label for option 'd'
-const submitBtn = document.querySelector('.quiz__submit'); // The submit button for answering the question
+const quizContainer = document.querySelector('.quiz');
+const answersEls = document.querySelectorAll('.answer');
+const questionEl = document.querySelector('.quiz__question');
+const a_text = document.querySelector('.a_text');
+const b_text = document.querySelector('.b_text');
+const c_text = document.querySelector('.c_text');
+const d_text = document.querySelector('.d_text');
+const submitBtn = document.querySelector('.quiz__submit');
+const timerEl = document.getElementById('timer'); // Timer element
 
-// Track the current quiz question index
 let currentQuiz = 0;
+let answer = undefined;
+let score = 0;
+let timer; // Timer variable
+const totalQuizTime = 180; // Total time for the quiz in seconds (e.g., 5 minutes)
 
-// Function to display the current question and its options
 showQuiz();
+startTimer(); // Start the total quiz timer on load
 
 function showQuiz() {
-    // Deselect any previously selected answer
     deselectAnswers();
-
-    // Load the data for the current question
     const currentQuizData = questions[currentQuiz];
 
-    // Update the HTML with the current question and answer options
     questionEl.innerText = currentQuizData.question;
     a_text.innerText = currentQuizData.a;
     b_text.innerText = currentQuizData.b;
@@ -113,62 +112,65 @@ function showQuiz() {
     d_text.innerText = currentQuizData.d;
 }
 
-let answer = undefined; // To store the currently selected answer
-let score = 0; // Variable to keep track of the user's score
+function startTimer() {
+    let timeLeft = totalQuizTime;
+    timerEl.innerText = timeLeft;
 
-// Function to get the selected answer
+    timer = setInterval(() => {
+        timeLeft--;
+        timerEl.innerText = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            alert('Time is up! You have finished the quiz.');
+            showScore();
+        }
+    }, 1000);
+}
+
+function goToNextQuestion() {
+    currentQuiz++;
+    if (currentQuiz < questions.length) {
+        showQuiz();
+    } else {
+        showScore();
+    }
+}
+
 function getSelected() {
-    // Loop through all the answer elements (radio buttons)
     answersEls.forEach(answersEl => {
-        // If the radio button is checked, assign its id to 'answer'
         if (answersEl.checked) {
             answer = answersEl.id;
         }
     });
-    // Return the selected answer id
     return answer;
 }
 
-// Function to clear any selected answers (uncheck all radio buttons)
 function deselectAnswers() {
     answersEls.forEach(answersEl => {
         answersEl.checked = false;
     });
 }
 
-// Event listener for the submit button
 submitBtn.addEventListener('click', function () {
-
-    // Get the user's selected answer
     answer = getSelected();
 
-    // If an answer was selected
     if (answer) {
-
-        // Check if the selected answer is correct
         if (answer === questions[currentQuiz].correct) {
-            score++; // Increment score if the answer is correct
+            score++;
         }
-
-        currentQuiz++; // Move to the next question
-        
-        // If there are more questions to display
-        if (currentQuiz < questions.length) {
-            showQuiz(); // Load the next question
-        } else {
-            // When all questions are answered, display the final score
-            quizContainer.innerHTML = `
-                <h2 class="quiz__question quiz__question--score">
-                Congratulations! You've completed the quiz. Your Score is ${score}/${questions.length}
-                </h2>
-
-                <button onclick="location.reload()" class="quiz__submit">Start Again</button>
-            `;
-            // The score is shown, and the quiz offers a restart option
-        }
-
+        goToNextQuestion();
     } else {
-        // Optionally, you can display a message prompting the user to select an answer
         alert('Please select an answer before submitting.');
     }
 });
+
+function showScore() {
+    clearInterval(timer); // Stop the timer when showing score
+    quizContainer.innerHTML = `
+        <h2 class="quiz__question quiz__question--score">
+        Congratulations! You've completed the quiz. Your Score is ${score}/${questions.length}
+        </h2>
+        <button onclick="location.reload()" class="quiz__submit">Start Again</button>
+    `;
+}
