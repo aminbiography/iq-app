@@ -89,6 +89,8 @@ body{
     align-items: center;
     /* Top border between list items */
     border-top: 1px solid #f1dbc1;
+    /* Position relative to position custom radio correctly */
+    position: relative;
 }
 
 /* Add bottom border to the last answer */
@@ -111,6 +113,8 @@ body{
     padding-left: 4rem;
     /* Light gray color for the text */
     color: #666;
+    /* Transition for smooth color and background changes */
+    transition: all 0.3s ease;
 }
 
 /* Active class for answer labels when selected */
@@ -128,12 +132,16 @@ body{
     height: 18px;
     /* Positions the radio button */
     position: absolute;
+    /* Align to the left */
+    left: 1rem;
     /* Makes the radio button circular */
     border-radius: 50%;
-    /* Margin on the left for spacing */
-    margin-left: 1rem;
     /* Light gray border around the button */
     border: 1px solid #ddd;
+    /* Background color */
+    background-color: #fff;
+    /* Transition for smooth changes */
+    transition: background-color 0.2s ease-in;
 }
 
 /* Custom radio button checked state */
@@ -172,6 +180,8 @@ input[type="radio"]:checked ~ .quiz__ans__label{
     font-weight: 500;
     /* Light background color for the selected answer */
     background-color: #ca8f4c1a;
+    /* Add border radius for a subtle effect */
+    border-radius: 5px;
 }
 
 /* Hides the default radio buttons */
@@ -199,6 +209,10 @@ input[type="radio"]{
     width: 100%;
     /* Default purple background color */
     background-color: #be29ec;
+    /* Cursor pointer */
+    cursor: pointer;
+    /* Transition for smooth background changes */
+    transition: background-color 0.3s ease;
 }
 
 /* Changes background color on hover for the submit button */
@@ -212,9 +226,25 @@ input[type="radio"]{
 }
 
 /* Media query for small screens (mobile) */
-@media only screen and (max-width: 450px){
-    /* Full width for the quiz container on small screens */
+@media only screen and (max-width: 768px){
+    /* Adjusts quiz container padding on smaller screens */
+    .question__container{
+        padding: 2rem 1.5rem;
+    }
+
+    /* Adjusts font sizes for better readability on smaller screens */
+    .quiz__question{
+        font-size: 1.8rem;
+    }
+
+    .quiz__ans__label{
+        font-size: 1.4rem;
+        padding-left: 3rem;
+    }
+
+    /* Adjusts the quiz container width */
     .quiz{
-        min-width: 100%;
+        min-width: 90%;
+        max-width: 100%;
     }
 }
