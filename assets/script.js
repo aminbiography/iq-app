@@ -50,10 +50,10 @@ const questions = [
     },
     {
         question: 'How many satellites are in the sky right now?',
-        a: 'Approximately 19,300',
-        b: 'Approximately 15,300',
-        c: 'Approximately 11,300', // Correct answer
-        d: 'Approximately 21,300',
+        a: 'Approximately 20,000',
+        b: 'Approximately 15,000',
+        c: 'Approximately 10,000', // Correct answer
+        d: 'Approximately 5,000',
         correct: 'c'
     },
     {
